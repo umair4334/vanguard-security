@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the Vanguard team and learn how common security breaches happen and how to defend against them.">
+  <title>About | Vanguard Security</title>
+  <link rel="icon" href="images/vanguard-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/vanguard-logo.png" alt="Vanguard V logo" width="40" height="40">
+        <span>VANGUARD</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="lab.html">Lab</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h1 id="about-title">About Vanguard</h1>
+        <p class="hero-lead">We make offensive security understandable and defensive OPSEC practical for students and local businesses. Most security advice is either too theoretical or priced for large enterprises, so we built something you can try for yourself.</p>
+        <img class="team-banner" src="images/team-banner.jpg" alt="Three retro terminal windows showing the team's work: testing lab payloads, reading metadata and validating forms." width="1200" height="400">
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="team-title">
+      <h2 id="team-title">Our Team</h2>
+      <div class="cards cards-three">
+        <article class="card">
+          <p class="card-tag">Lead</p>
+          <h3>Umair Ahmad</h3>
+          <p>Leads the project and builds the Security Lab, including the live XSS sandbox and SQL injection visualizer.</p>
+        </article>
+        <article class="card">
+          <p class="card-tag">OSINT Tools</p>
+          <h3>Ammar Yasir</h3>
+          <p>Builds the self-audit toolkit and interface styling, from fingerprint viewing to link and metadata analysis.</p>
+        </article>
+        <article class="card">
+          <p class="card-tag">Core Pages and QA</p>
+          <h3>Faizan Ali</h3>
+          <p>Looks after the core pages, form validation and testing so that every feature works as intended.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="breach-title">
+      <h2 id="breach-title">How Breaches Happen</h2>
+      <p class="section-intro">Most incidents begin with a small, preventable weakness. This table links common attack vectors to their root causes and the defence you can practise on this site.</p>
+      <div class="table-wrap" role="region" aria-labelledby="breach-title" tabindex="0">
+        <table>
+          <caption>Common attack vectors and Vanguard defences</caption>
+          <thead>
+            <tr>
+              <th scope="col">Vector</th>
+              <th scope="col">Root Cause</th>
+              <th scope="col">Vanguard Defense</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Phishing URLs</th>
+              <td>Punycode spoofing</td>
+              <td>Homograph Analyzer</td>
+            </tr>
+            <tr>
+              <th scope="row">Reflected XSS</th>
+              <td>Unescaped output</td>
+              <td>Entity sanitization</td>
+            </tr>
+            <tr>
+              <th scope="row">SQL Injection</th>
+              <td>Concatenated query strings</td>
+              <td>Parameterized queries</td>
+            </tr>
+            <tr>
+              <th scope="row">Image Leaks</th>
+              <td>Embedded GPS EXIF data</td>
+              <td>Local EXIF Inspector</td>
+            </tr>
+            <tr>
+              <th scope="row">Account Takeover</th>
+              <td>Weak, patterned passwords</td>
+              <td>Password Strength Checker</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Vanguard Security &middot; <a href="https://github.com/umair4334/vanguard-security">GitHub Repo</a> &middot; Islamabad</p>
+    <p class="footer-note">CSC-114 student project, Bahria University Islamabad. Vanguard is a concept company created for this coursework.</p>
+  </footer>
+</body>
+</html>

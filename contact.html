@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Request a security audit, student workshop or custom lab session from Vanguard.">
+  <title>Contact | Vanguard Security</title>
+  <link rel="icon" href="images/vanguard-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/form-check.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/vanguard-logo.png" alt="Vanguard V logo" width="40" height="40">
+        <span>VANGUARD</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="lab.html">Lab</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h1 id="contact-title">Book a Consultation</h1>
+        <p class="hero-lead">Request a security audit, student workshop or custom lab session.</p>
+      </div>
+    </section>
+
+    <section class="window" aria-labelledby="form-title">
+      <div class="window-bar">
+        <span>form://consultation</span>
+        <span class="badge badge-info">* REQUIRED</span>
+      </div>
+      <div class="window-body">
+        <h2 id="form-title">Consultation Form</h2>
+        <form id="consultForm" action="#" method="post" novalidate>
+          <div class="field">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" autocomplete="name" aria-describedby="nameError" required>
+            <p class="field-error" id="nameError"></p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" autocomplete="email" aria-describedby="emailError" required>
+            <p class="field-error" id="emailError"></p>
+          </div>
+
+          <div class="field">
+            <label for="service">Service Interested In *</label>
+            <select id="service" name="service" aria-describedby="serviceError" required>
+              <option value="">Select a service</option>
+              <option value="Web Application Security Audit">Web Application Security Audit</option>
+              <option value="Staff OPSEC Workshop">Staff OPSEC Workshop</option>
+              <option value="Student Lab Session">Student Lab Session</option>
+              <option value="Incident Readiness Guide">Incident Readiness Guide</option>
+            </select>
+            <p class="field-error" id="serviceError"></p>
+          </div>
+
+          <div class="field">
+            <label for="msg">Message (20&ndash;500 characters) *</label>
+            <textarea id="msg" name="msg" rows="4" aria-describedby="msgHint msgError" required></textarea>
+            <p class="hint" id="msgHint"><span>Tell us about your team and what you need.</span><span id="msgCounter">0 / 500</span></p>
+            <p class="field-error" id="msgError"></p>
+          </div>
+
+          <button class="btn" type="submit">Send Consultation Request</button>
+          <div class="form-message" id="formMessage" role="status" tabindex="-1"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="welcome" aria-labelledby="direct-title">
+      <h2 id="direct-title">Direct Contact Info</h2>
+      <p>Islamabad E-8 Sector &middot; <code>contact@vanguard-sec.pk</code></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Vanguard Security &middot; <a href="https://github.com/umair4334/vanguard-security">GitHub Repo</a> &middot; Islamabad</p>
+    <p class="footer-note">CSC-114 student project, Bahria University Islamabad. Vanguard is a concept company created for this coursework.</p>
+  </footer>
+</body>
+</html>

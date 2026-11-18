@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Stops the sandboxed comment box from loading any outside page. -->
+  <meta http-equiv="Content-Security-Policy" content="frame-src 'none'">
+  <meta name="description" content="Run live, contained XSS payloads and a simulated SQL injection, then compare each attack with its fix.">
+  <title>Security Lab | Vanguard Security</title>
+  <link rel="icon" href="images/vanguard-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/lab-sandbox.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/vanguard-logo.png" alt="Vanguard V logo" width="40" height="40">
+        <span>VANGUARD</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="lab.html" aria-current="page">Lab</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="lab-title">
+      <div>
+        <p class="eyebrow">Live vulnerability demos</p>
+        <h1 id="lab-title">Security Lab</h1>
+        <p class="hero-lead">Attack two deliberately flawed features, watch what happens, then see the one change that stops each attack.</p>
+      </div>
+    </section>
+
+    <p class="lab-banner" role="note">Educational sandbox: contained to this page only.
+      <span>No backend database or external network requests are performed. Only use these techniques on systems you own or have written permission to test.</span>
+    </p>
+
+    <!-- SECTION A: live XSS demo -->
+    <section class="window" aria-labelledby="xss-title">
+      <div class="window-bar">
+        <span>section_a://xss-reflection</span>
+        <span class="badge badge-danger" id="xssStatus">VULNERABLE</span>
+      </div>
+      <div class="window-body">
+        <h2 id="xss-title">Live Contained XSS Sandbox</h2>
+        <p class="section-intro">Cross-Site Scripting happens when a page treats visitor input as code. Post a comment or pick a payload, then switch on Safe Escaped Mode.</p>
+
+        <form id="xssForm" novalidate>
+          <div class="field">
+            <label for="xssInput">Leave a comment</label>
+            <textarea class="input-mono" id="xssInput" name="xssInput" rows="3" maxlength="600" placeholder="Leave a comment..."></textarea>
+            <p class="field-error" id="xssError"></p>
+          </div>
+          <p class="chip-label" id="xssPresetLabel">Try a payload</p>
+          <div class="chip-row" role="group" aria-labelledby="xssPresetLabel">
+            <button class="chip" type="button" data-payload="html">HTML injection</button>
+            <button class="chip" type="button" data-payload="script">Script tag</button>
+            <button class="chip" type="button" data-payload="image">Image onerror</button>
+            <button class="chip" type="button" data-payload="deface">Deface box</button>
+            <button class="chip" type="button" data-payload="cookie">Steal cookies</button>
+            <button class="chip" type="button" data-payload="escape">Escape sandbox</button>
+          </div>
+          <div class="inline-controls">
+            <button class="btn" type="submit">Submit</button>
+            <label class="switch" for="safeMode">
+              <input type="checkbox" id="safeMode" name="safeMode">
+              Safe Escaped Mode
+            </label>
+          </div>
+        </form>
+
+        <div class="lab-grid">
+          <div>
+            <p class="pane-title">Live output box</p>
+            <iframe id="xssFrame" title="Isolated preview of the submitted comment" sandbox="allow-scripts"></iframe>
+          </div>
+          <div>
+            <p class="pane-title">Execution log</p>
+            <ol class="console" id="xssLog" aria-live="polite">
+              <li>Waiting for a comment.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="lab-grid">
+          <figure class="code-panel">
+            <figcaption><span class="badge badge-danger">VULNERABLE</span> innerHTML</figcaption>
+            <pre><code>// The browser reads the comment as HTML,
+// so attacker markup becomes part of the page.
+output.innerHTML = comment;</code></pre>
+          </figure>
+          <figure class="code-panel">
+            <figcaption><span class="badge badge-safe">SAFE</span> textContent</figcaption>
+            <pre><code>// The browser reads the comment as plain text,
+// so &lt;script&gt; is only displayed, never run.
+output.textContent = comment;</code></pre>
+          </figure>
+        </div>
+        <p class="notice">Script tags added through <code>innerHTML</code> do not run by themselves, but event handlers such as <code>onerror</code> do. This lab writes each comment into an isolated document so both kinds execute safely. The sandbox has no access to this page, its cookies or the network.</p>
+      </div>
+    </section>
+
+    <!-- SECTION B: simulated SQL injection demo -->
+    <section class="window" aria-labelledby="sqli-title">
+      <div class="window-bar">
+        <span>section_b://sqli-visualizer</span>
+        <span class="badge badge-info">SIMULATED</span>
+      </div>
+      <div class="window-body">
+        <h2 id="sqli-title">Simulated SQL Injection Visualizer</h2>
+        <p class="section-intro">SQL injection happens when input is pasted directly into a database query. This demo runs your query against a small fake table in your browser.</p>
+
+        <form id="sqliForm" novalidate>
+          <div class="lab-grid">
+            <div class="field">
+              <label for="sqlUser">Username</label>
+              <input class="input-mono" type="text" id="sqlUser" name="sqlUser" maxlength="80" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="field">
+              <label for="sqlPass">Password</label>
+              <input class="input-mono" type="password" id="sqlPass" name="sqlPass" maxlength="80" autocomplete="off">
+            </div>
+          </div>
+          <p class="chip-label" id="sqlPresetLabel">Try an input</p>
+          <div class="chip-row" role="group" aria-labelledby="sqlPresetLabel">
+            <button class="chip" type="button" data-sql="normal">Valid login</button>
+            <button class="chip" type="button" data-sql="wrong">Wrong password</button>
+            <button class="chip" type="button" data-sql="orTrue">OR '1'='1</button>
+            <button class="chip" type="button" data-sql="comment">Comment out password</button>
+            <button class="chip" type="button" data-sql="passField">Password field attack</button>
+            <button class="chip" type="button" data-sql="drop">DROP TABLE</button>
+          </div>
+          <button class="btn" type="submit">Test Login</button>
+        </form>
+
+        <p class="pane-title section">Live query string</p>
+        <pre class="query-box" id="sqlQuery"></pre>
+
+        <div class="lab-grid">
+          <div>
+            <p class="pane-title">String concatenation</p>
+            <div class="result-box" id="concatResult" aria-live="polite"><span class="badge badge-info">READY</span><p>Press Test Login to run the query.</p></div>
+          </div>
+          <div>
+            <p class="pane-title">Parameterized query</p>
+            <div class="result-box" id="paramResult" aria-live="polite"><span class="badge badge-info">READY</span><p>Press Test Login to run the query.</p></div>
+          </div>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="Fake users table" tabindex="0">
+          <table>
+            <caption>Fake users table (rows returned by the query are highlighted)</caption>
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">username</th>
+                <th scope="col">password</th>
+                <th scope="col">role</th>
+              </tr>
+            </thead>
+            <tbody id="sqlUsers"></tbody>
+          </table>
+        </div>
+
+        <div class="lab-grid">
+          <figure class="code-panel">
+            <figcaption><span class="badge badge-danger">VULNERABLE</span> Concatenation</figcaption>
+            <pre><code>// Input becomes part of the SQL command.
+const sql = "SELECT * FROM users WHERE username = '"
+  + user + "' AND password = '" + pass + "'";
+db.query(sql);</code></pre>
+          </figure>
+          <figure class="code-panel">
+            <figcaption><span class="badge badge-safe">SAFE</span> Parameterized</figcaption>
+            <pre><code>// Input is sent separately and treated as data.
+const sql = "SELECT * FROM users WHERE username = ?"
+  + " AND password = ?";
+db.query(sql, [user, pass]);</code></pre>
+          </figure>
+        </div>
+        <p class="notice">Real systems never store plain-text passwords. They are shown here so you can follow the logic of each query.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Vanguard Security &middot; <a href="https://github.com/umair4334/vanguard-security">GitHub Repo</a> &middot; Islamabad</p>
+    <p class="footer-note">CSC-114 student project, Bahria University Islamabad. Vanguard is a concept company created for this coursework.</p>
+  </footer>
+</body>
+</html>

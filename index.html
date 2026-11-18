@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vanguard is an Islamabad security training and consulting service with a live vulnerability lab and private, browser-based OSINT tools.">
+  <title>Home | Vanguard Security</title>
+  <link rel="icon" href="images/vanguard-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/vanguard-logo.png" alt="Vanguard V logo" width="40" height="40">
+        <span>VANGUARD</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="lab.html">Lab</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero-split" aria-labelledby="home-title">
+      <div>
+        <p class="eyebrow">Security training and consulting</p>
+        <h1 id="home-title">Vanguard: Security That Thinks Like an Attacker</h1>
+        <p class="hero-lead">See how real web attacks work, check what your own browser and photos give away, and get practical help protecting your team.</p>
+        <div class="hero-actions">
+          <a class="btn" href="contact.html">Book a Consultation</a>
+          <a class="btn btn-alt" href="lab.html">Open Security Lab</a>
+        </div>
+      </div>
+      <pre class="terminal" role="img" aria-label="Terminal readout: this site uses no uploads, cookies or trackers, while your browser shares a lot about you."><span class="t-cyan">vanguard@lab:~$</span> audit --this-site
+<span class="t-green">[ ok ]</span> file uploads ... none
+<span class="t-green">[ ok ]</span> cookies ........ none
+<span class="t-green">[ ok ]</span> trackers ....... none
+<span class="t-amber">[ !! ]</span> your browser ... talkative
+<span class="t-cyan">vanguard@lab:~$</span> open tools.html</pre>
+    </section>
+
+    <section class="section" aria-labelledby="explore-title">
+      <h2 id="explore-title">Start Exploring</h2>
+      <div class="cards cards-three">
+        <article class="card">
+          <p class="card-tag">lab.html</p>
+          <h3>Security Lab</h3>
+          <p>Fire live XSS payloads and a simulated SQL injection in a contained sandbox, then compare the fix.</p>
+          <a class="card-link" href="lab.html">Enter the lab &rarr;</a>
+        </article>
+        <article class="card">
+          <p class="card-tag">tools.html</p>
+          <h3>OSINT Tools</h3>
+          <p>Check your browser fingerprint, suspicious links, photo metadata and password strength on your own device.</p>
+          <a class="card-link" href="tools.html">Check your exposure &rarr;</a>
+        </article>
+        <article class="card">
+          <p class="card-tag">services.html</p>
+          <h3>Services</h3>
+          <p>Web audits, staff OPSEC workshops and student clinics for local businesses and university societies.</p>
+          <a class="card-link" href="services.html">View services &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="welcome" aria-labelledby="why-title">
+      <h2 id="why-title">Why Vanguard</h2>
+      <div class="prose-columns">
+        <p><strong>Your data stays with you.</strong> Every tool on this site runs inside your browser. Photos, links and passwords are never uploaded, because there is no server to send them to.</p>
+        <p><strong>Learning without the legal risk.</strong> Testing attacks on systems you do not own is a crime under Pakistan's PECA 2016. Our lab gives you a safe target built for practice.</p>
+        <p><strong>Security sized for small teams.</strong> Local businesses need clear steps they can act on this week, so we focus on phishing, passwords and everyday habits.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Vanguard Security &middot; <a href="https://github.com/umair4334/vanguard-security">GitHub Repo</a> &middot; Islamabad</p>
+    <p class="footer-note">CSC-114 student project, Bahria University Islamabad. Vanguard is a concept company created for this coursework.</p>
+  </footer>
+</body>
+</html>

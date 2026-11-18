@@ -8,9 +8,9 @@ Vanguard is a six-page static website for a cybersecurity training and consultin
 
 | Member | Role | Responsibilities |
 | --- | --- | --- |
-| Umair Ahmad | Lead Architect and Security Lab Developer | `index.html`, `lab.html`, `style.css`, `js/lab-sandbox.js` |
-| Ammar Yasir | OSINT Toolkit and UI Developer | `tools.html`, `services.html`, `js/osint-tools.js` |
-| Faizan Ali | Core Pages, Form Validation and QA Lead | `about.html`, `contact.html`, `js/form-check.js` |
+| Umair Ahmad (01-134262-145) | Lead Architect and Security Lab Developer | `index.html`, `lab.html`, `style.css`, `js/lab-sandbox.js` |
+| Ammar Yasser (01-134262-056) | OSINT Toolkit and UI Developer | `tools.html`, `services.html`, `js/osint-tools.js` |
+| Faizan Ali (01-134262-135) | Core Pages, Form Validation and QA Lead | `about.html`, `contact.html`, `js/form-check.js` |
 
 ## How to run
 

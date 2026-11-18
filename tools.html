@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Four private OSINT self-audit tools: browser fingerprint viewer, phishing URL analyzer, EXIF inspector and password checker.">
+  <title>OSINT Tools | Vanguard Security</title>
+  <link rel="icon" href="images/vanguard-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/osint-tools.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/vanguard-logo.png" alt="Vanguard V logo" width="40" height="40">
+        <span>VANGUARD</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="lab.html">Lab</a></li>
+          <li><a href="tools.html" aria-current="page">Tools</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="tools-title">
+      <div>
+        <p class="eyebrow">Audit yourself first</p>
+        <h1 id="tools-title">OSINT &amp; OPSEC Self-Audit Toolkit</h1>
+        <p class="hero-lead">All four utilities run 100% locally in your browser, with zero server uploads.</p>
+      </div>
+    </section>
+
+    <!-- TOOL 1: browser fingerprint viewer -->
+    <section class="window" aria-labelledby="fp-title">
+      <div class="window-bar">
+        <span>tool_1://fingerprint</span>
+        <span class="badge badge-info">AUTO-RUNS</span>
+      </div>
+      <div class="window-body">
+        <h2 id="fp-title">Browser Fingerprint Viewer</h2>
+        <p class="section-intro">Any website can read these details the moment you arrive, with no permission prompt. Together they can help recognise your device.</p>
+        <p class="tool-summary"><strong>Your fingerprint ID:</strong> <code class="badge badge-info" id="fpId">calculating</code></p>
+        <div class="table-wrap" role="region" aria-labelledby="fp-title" tabindex="0">
+          <table>
+            <caption>What this browser reveals</caption>
+            <thead>
+              <tr>
+                <th scope="col">Property</th>
+                <th scope="col">Your Value</th>
+                <th scope="col">Why It Matters</th>
+              </tr>
+            </thead>
+            <tbody id="fpTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 2: phishing URL analyzer -->
+    <section class="window" aria-labelledby="url-title">
+      <div class="window-bar">
+        <span>tool_2://url-analyzer</span>
+        <span class="badge badge-info">LOCAL</span>
+      </div>
+      <div class="window-body">
+        <h2 id="url-title">Phishing URL &amp; Punycode Homograph Analyzer</h2>
+        <p class="section-intro">Paste a suspicious link to inspect it without opening it. The link is never visited.</p>
+        <form id="urlForm" novalidate>
+          <label for="urlInput">Link to analyze</label>
+          <div class="input-row">
+            <input class="input-mono" type="text" id="urlInput" name="urlInput" maxlength="2048" autocomplete="off" spellcheck="false" placeholder="https://example.com/login">
+            <button class="btn" type="submit">Analyze</button>
+          </div>
+          <p class="field-error" id="urlError"></p>
+        </form>
+        <p class="chip-label" id="urlPresetLabel">Try an example</p>
+        <div class="chip-row" role="group" aria-labelledby="urlPresetLabel">
+          <button class="chip" type="button" data-url="https://www.wikipedia.org/">Normal site</button>
+          <button class="chip" type="button" data-url="http://раypal.com/login">Cyrillic lookalike</button>
+          <button class="chip" type="button" data-url="https://xn--pple-43d.com/verify">Punycode</button>
+          <button class="chip" type="button" data-url="https://paypal.com.account-verify.top/signin">Brand in subdomain</button>
+          <button class="chip" type="button" data-url="http://google.com@192.168.10.5:8080/update">Hidden IP</button>
+        </div>
+        <div class="tool-output" id="urlOutput" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- TOOL 3: EXIF inspector -->
+    <section class="window" aria-labelledby="exif-title">
+      <div class="window-bar">
+        <span>tool_3://exif-inspector</span>
+        <span class="badge badge-info">LOCAL</span>
+      </div>
+      <div class="window-body">
+        <h2 id="exif-title">Local Image EXIF &amp; Metadata Inspector</h2>
+        <p class="section-intro">Photos can carry hidden details such as GPS location, device model and time taken. Your image is read in memory and never leaves this device.</p>
+        <label for="exifInput">Choose an image file</label>
+        <input type="file" id="exifInput" name="exifInput" accept="image/*">
+        <p class="hint"><span>EXIF is read from JPEG photos. Maximum file size: 25 MB.</span></p>
+        <p class="field-error" id="exifError"></p>
+        <div class="tool-output" id="exifOutput" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- TOOL 4: password checker -->
+    <section class="window" aria-labelledby="pw-title">
+      <div class="window-bar">
+        <span>tool_4://password-check</span>
+        <span class="badge badge-info">LOCAL</span>
+      </div>
+      <div class="window-body">
+        <h2 id="pw-title">Password Strength &amp; Breach-Pattern Checker</h2>
+        <p class="section-intro">See how long a password could resist guessing. Nothing you type is saved or sent anywhere.</p>
+        <label for="pwInput">Password to test</label>
+        <div class="input-row">
+          <input class="input-mono" type="password" id="pwInput" name="pwInput" maxlength="128" autocomplete="off" spellcheck="false">
+          <button class="btn btn-alt" type="button" id="pwToggle" aria-pressed="false">Show</button>
+        </div>
+        <div class="meter" aria-hidden="true"><div class="meter-fill" id="pwMeter"></div></div>
+        <div aria-live="polite">
+          <p class="tool-summary"><strong>Strength:</strong> <span class="badge badge-info" id="pwLabel">NO INPUT</span></p>
+          <p class="stat-row">
+            <span>Entropy: <strong id="pwBits">0</strong> bits</span>
+            <span>Offline crack time: <strong id="pwTime">n/a</strong></span>
+          </p>
+          <ul class="tip-list" id="pwTips"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Vanguard Security &middot; <a href="https://github.com/umair4334/vanguard-security">GitHub Repo</a> &middot; Islamabad</p>
+    <p class="footer-note">CSC-114 student project, Bahria University Islamabad. Vanguard is a concept company created for this coursework.</p>
+  </footer>
+</body>
+</html>
